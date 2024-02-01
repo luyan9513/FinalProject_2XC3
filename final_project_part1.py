@@ -54,8 +54,10 @@ def dijkstra(G, source):
         dist[current_node] = current_element.key
         for neighbour in G.adj[current_node]:
             if dist[current_node] + G.w(current_node, neighbour) < dist[neighbour]:
-                Q.decrease_key(neighbour, dist[current_node] + G.w(current_node, neighbour))
-                dist[neighbour] = dist[current_node] + G.w(current_node, neighbour)
+                Q.decrease_key(
+                    neighbour, dist[current_node] + G.w(current_node, neighbour))
+                dist[neighbour] = dist[current_node] + \
+                    G.w(current_node, neighbour)
                 pred[neighbour] = current_node
     return dist
 
@@ -105,8 +107,10 @@ def dijkstra_approx(G, source, k):
             if relax_counts[neighbour] >= k:
                 continue
             if dist[current_node] + G.w(current_node, neighbour) < dist[neighbour]:
-                Q.decrease_key(neighbour, dist[current_node] + G.w(current_node, neighbour))
-                dist[neighbour] = dist[current_node] + G.w(current_node, neighbour)
+                Q.decrease_key(
+                    neighbour, dist[current_node] + G.w(current_node, neighbour))
+                dist[neighbour] = dist[current_node] + \
+                    G.w(current_node, neighbour)
                 pred[neighbour] = current_node
                 relax_counts[neighbour] += 1
     return dist
@@ -176,7 +180,6 @@ def init_d(G):
     return d
 
 
-
 ################ Experiment suite 1 ##############
 
 # Fix the value of k of the graph,
@@ -198,7 +201,8 @@ def exp_a():
             dist_approx += total_dist(dijkstra_approx(G, source, k))
         dist_list.append(dist / runs)
         dist_approx_list.append(dist_approx / runs)
-        print("n: " + str(n) + ", total distance: " + str(dist / runs) + ", total distance approx: " + str(dist_approx / runs))
+        print("n: " + str(n) + ", total distance: " + str(dist / runs) +
+              ", total distance approx: " + str(dist_approx / runs))
     plt.plot(size, dist_list, label="Dijkstra")
     plt.plot(size, dist_approx_list, label="Dijkstra Approx")
     plt.xlabel("Number of nodes")
@@ -223,10 +227,12 @@ def exp_c():
             G = create_random_complete_graph(n, 100)
             source = random.randint(0, n - 1)
             dist = dist + total_dist(dijkstra(G, source))
-            dist_approx = dist_approx + total_dist(dijkstra_approx(G, source, k_val))
+            dist_approx = dist_approx + \
+                total_dist(dijkstra_approx(G, source, k_val))
         dist_list.append(dist / runs)
         dist_approx_list.append(dist_approx / runs)
-        print("k: " + str(k_val) + ", total distance: " + str(dist / runs) + ", total distance approx: " + str(dist_approx / runs))
+        print("k: " + str(k_val) + ", total distance: " + str(dist /
+              runs) + ", total distance approx: " + str(dist_approx / runs))
 
     plt.plot(k, dist_list, label="Dijkstra")
     plt.plot(k, dist_approx_list, label="Dijkstra Approx")
@@ -255,7 +261,8 @@ def exp_b():
             dist_approx += total_dist(bellman_ford_approx(G, source, k))
         dist_list.append(dist / runs)
         dist_approx_list.append(dist_approx / runs)
-        print("n: " + str(n) + ", total distance: " + str(dist / runs) + ", total distance approx: " + str(dist_approx / runs))
+        print("n: " + str(n) + ", total distance: " + str(dist / runs) +
+              ", total distance approx: " + str(dist_approx / runs))
     plt.plot(size, dist_list, label="Bellman-Ford")
     plt.plot(size, dist_approx_list, label="Bellman-Ford Approx")
     plt.xlabel("Number of nodes")
@@ -280,10 +287,12 @@ def exp_d():
             G = create_random_complete_graph(n, 100)
             source = random.randint(0, n - 1)
             dist = dist + total_dist(bellman_ford(G, source))
-            dist_approx = dist_approx + total_dist(bellman_ford_approx(G, source, k_val))
+            dist_approx = dist_approx + \
+                total_dist(bellman_ford_approx(G, source, k_val))
         dist_list.append(dist / runs)
         dist_approx_list.append(dist_approx / runs)
-        print("k: " + str(k_val) + ", total distance: " + str(dist / runs) + ", total distance approx: " + str(dist_approx / runs))
+        print("k: " + str(k_val) + ", total distance: " + str(dist /
+              runs) + ", total distance approx: " + str(dist_approx / runs))
 
     plt.plot(k, dist_list, label="Bellman-Ford")
     plt.plot(k, dist_approx_list, label="Bellman-Ford Approx")
@@ -294,6 +303,8 @@ def exp_d():
 ############################################
 
 # Experiment for mystery function
+
+
 def exp_mys():
     G = DirectedWeightedGraph()
     G.add_node(0)
@@ -342,6 +353,7 @@ def exp_mys():
     # plt.ylabel("Time")
     # plt.legend()
     # plt.show()
+
 
 if __name__ == "__main__":
     exp_a()

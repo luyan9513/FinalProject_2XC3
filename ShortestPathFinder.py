@@ -1,6 +1,7 @@
 import SPAlgorithm
 import graph
 
+
 class ShortestPathFinder:
     def __init__(self):
         self.algorithm = None
@@ -8,12 +9,13 @@ class ShortestPathFinder:
 
     def calc_short_path(self, source: int, dest: int) -> float:
         return self.algorithm.calc_sp(self.graph, source, dest)
-    
+
     def set_graph(self, graph: graph):
         self.graph = graph
-    
-    def set_algorithm(self, algorithm : SPAlgorithm):
+
+    def set_algorithm(self, algorithm: SPAlgorithm):
         self.algorithm = algorithm
+
 
 def test():
     s = ShortestPathFinder()
@@ -31,10 +33,12 @@ def test():
     s.graph.add_edge(3, 6, 8)
     s.graph.add_edge(4, 6, 6)
     s.graph.add_edge(5, 6, 3)
-    
+
     print(s.calc_short_path(0, 6))
 
+
 test()
+
 
 def test2():
     s = ShortestPathFinder()
@@ -57,9 +61,5 @@ def test2():
     print(s.calc_short_path(0, 6))
     print(s.graph.get_heuristic())
 
+
 test2()
-
-
-
-
-

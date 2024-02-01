@@ -44,7 +44,8 @@ class MinHeap:
 
     def swim(self, i):
         while i > 0 and self.data[i].key < self.data[self.parent(i)].key:
-            self.data[i], self.data[self.parent(i)] = self.data[self.parent(i)], self.data[i]
+            self.data[i], self.data[self.parent(
+                i)] = self.data[self.parent(i)], self.data[i]
             self.map[self.data[i].value] = i
             self.map[self.data[self.parent(i)].value] = self.parent(i)
             i = self.parent(i)
@@ -54,7 +55,8 @@ class MinHeap:
             return self.data[0]
 
     def extract_min(self):
-        self.data[0], self.data[self.length - 1] = self.data[self.length - 1], self.data[0]
+        self.data[0], self.data[self.length -
+                                1] = self.data[self.length - 1], self.data[0]
         self.map[self.data[self.length - 1].value] = self.length - 1
         self.map[self.data[0].value] = 0
         min_element = self.data[self.length - 1]
@@ -107,5 +109,8 @@ class Element:
     def __str__(self):
         return "(" + str(self.value) + "," + str(self.key) + ")"
 
-nodes1 = [Element("A", 5), Element("B", 1), Element("C", 10), Element("D", 2), Element("E", -3)]
-nodes2 = [Element(1, 1), Element(2, 1), Element(3, 10), Element(4, 2), Element(5, -3)]
+
+nodes1 = [Element("A", 5), Element("B", 1), Element(
+    "C", 10), Element("D", 2), Element("E", -3)]
+nodes2 = [Element(1, 1), Element(2, 1), Element(
+    3, 10), Element(4, 2), Element(5, -3)]
